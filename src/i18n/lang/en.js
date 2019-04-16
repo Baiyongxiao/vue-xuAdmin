@@ -12,6 +12,7 @@ const en = {
     systemSettings: 'systemSettings',
     adminSetting: 'adminSetting',
     roleSetting: 'roleSetting',
+    productMain: 'productMain',
   },
   rightMenu: {
     close: 'close',

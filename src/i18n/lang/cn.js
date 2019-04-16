@@ -11,6 +11,7 @@ const cn = {
     systemSettings: '系统设置',
     adminSetting: '管理员设置',
     roleSetting: '权限设置',
+    productMain: '产品管理',
   },
   rightMenu: {
     close: '关闭',

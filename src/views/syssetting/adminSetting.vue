@@ -185,11 +185,9 @@
         }
       },
       load(){
-        this.$axios.get("/api/user/findAllUser", {
-          params:{
+        this.$axios.post("/api/user/findAllUser", {
             pageNum: this.listQuery.page,
             pageSize: this.listQuery.limit
-            }
           }
         ).then(res =>{
           this.user = res.data.list

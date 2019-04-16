@@ -8,6 +8,7 @@ import HomeMain from '@/views/index/mainIndex'
 // 不是必须加载的组件使用懒加载
 const NotFound = () => import('@/page404')
 const AdminSetting = () => import('@/views/syssetting/adminSetting')
+const ProductMain = () => import('@/views/product/productMain')
 
 Vue.use(Router)
 let routeNmae = en.routeNmae
@@ -64,6 +65,23 @@ let addRouter = [
         iconCls: 'el-icon-menu', // 图标样式class
         name: routeNmae.adminSetting,
         component: AdminSetting,
+        children: []
+      },
+    ]
+  },
+  {
+    path: '/productMain',
+    iconCls: 'el-icon-product', // 图标样式class
+    name: routeNmae.productMain,
+    component: Layout,
+    alone: true,
+    meta: {role: ['admin']},
+    children: [
+      {
+        path: '/productMain',
+        iconCls: 'el-icon-menu', // 图标样式class
+        name: routeNmae.adminSetting,
+        component: ProductMain,
         children: []
       },
     ]
