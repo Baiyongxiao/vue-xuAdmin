@@ -9,6 +9,7 @@ import HomeMain from '@/views/index/mainIndex'
 const NotFound = () => import('@/page404')
 const AdminSetting = () => import('@/views/syssetting/adminSetting')
 const ProductMain = () => import('@/views/product/productMain')
+const program = () => import('@/views/product/program')
 
 Vue.use(Router)
 let routeNmae = en.routeNmae
@@ -80,8 +81,25 @@ let addRouter = [
       {
         path: '/productMain',
         iconCls: 'el-icon-menu', // 图标样式class
-        name: routeNmae.adminSetting,
+        name: routeNmae.productMain,
         component: ProductMain,
+        meta: {role: ['admin']},
+        children: []
+      },
+    ]
+  },
+  {
+    path: '/program',
+    iconCls: 'el-icon-program', // 图标样式class
+    name: routeNmae.program,
+    hidden: true,
+    component: Layout,
+    children: [
+      {
+        path: '/program',
+        iconCls: 'el-icon-menu', // 图标样式class
+        name: routeNmae.program,
+        component: program,
         children: []
       },
     ]

@@ -12,6 +12,7 @@ const cn = {
     adminSetting: '管理员设置',
     roleSetting: '权限设置',
     productMain: '产品管理',
+    program: '产品方案管理',
   },
   rightMenu: {
     close: '关闭',

@@ -13,6 +13,7 @@ const en = {
     adminSetting: 'adminSetting',
     roleSetting: 'roleSetting',
     productMain: 'productMain',
+    program: 'program',
   },
   rightMenu: {
     close: 'close',
