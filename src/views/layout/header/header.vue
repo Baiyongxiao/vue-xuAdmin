@@ -18,8 +18,8 @@
                     <i class="el-icon-arrow-down el-icon--right"></i>
                   </span>
             <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item command="a">{{ $t('userDropdownMenu.basicInfor') }}</el-dropdown-item>
-              <el-dropdown-item command="b">{{ $t('userDropdownMenu.changePassword') }}</el-dropdown-item>
+              <el-dropdown-item command="info">{{ $t('userDropdownMenu.basicInfor') }}</el-dropdown-item>
+              <el-dropdown-item command="history">{{ $t('userDropdownMenu.history') }}</el-dropdown-item>
               <el-dropdown-item command="logout" divided>{{ $t('userDropdownMenu.logout') }}</el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
@@ -28,6 +28,36 @@
       </ul>
     </el-header>
     <tabNav></tabNav>
+
+    <el-dialog title="个人信息" :visible.sync="dialogFormVisible">
+      <el-form :model="form">
+        <el-form-item label="昵称">
+          <el-input v-model="form.name"></el-input>
+        </el-form-item>
+        <el-form-item label="账号">
+          <el-input v-model="form.account" disabled></el-input>
+        </el-form-item>
+        <el-form-item label="密码">
+          <el-input v-model="form.password" type="password"></el-input>
+        </el-form-item>
+        <el-form-item label="确认密码">
+          <el-input v-model="form.passwordVo" type="password"></el-input>
+        </el-form-item>
+        <el-form-item label="手机号码">
+          <el-input v-model="form.phone"></el-input>
+        </el-form-item>
+        <el-form-item label="性别">
+          <el-select v-model="form.sex" placeholder="请选择性别">
+            <el-option label="男" value="男"></el-option>
+            <el-option label="女" value="女"></el-option>
+          </el-select>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogFormVisible = false">取 消</el-button>
+        <el-button type="primary" @click="updateInfo">修改</el-button>
+      </div>
+    </el-dialog>
   </div>
 </template>
 
@@ -42,6 +72,16 @@
     data () {
       return {
         isfullScreen: true,
+        dialogFormVisible: false,
+        form: {
+          id:'',
+          name: '',
+          account:'',
+          password:'',
+          passwordVo:'',
+          phone:'',
+          sex:'',
+        },
         avatar: './static/images/icon.jpg'
       }
     },
@@ -83,7 +123,54 @@
           Cookies.remove('token');
           location.reload()
 
+        }else if (command === 'info') {
+          this.$axios.get("/api/user/findUserById?id="+this.$store.getters.info.id)
+            .then(res =>{
+              this.form = res.data
+              this.dialogFormVisible = true
+            })
+        }else if (command === 'history') {
+          this.$router.push({
+            path: '/history',
+          })
         }
+      },
+      updateInfo(){
+        this.dialogFormVisible = false;
+        if(this.form.name === '' || this.form.name === null){
+          this.$message.error("用户名不可以为空！");
+          return;
+        }
+        if(this.form.password === '' || this.form.password === null){
+          this.$message.error("密码不可以为空！");
+          return;
+        }else if (this.form.password !== this.form.passwordVo) {
+          this.$message.error("两次输入的密码不同！");
+          return;
+        }
+        if(this.form.phone === '' || this.form.phone === null){
+          this.$message.error("手机号码不可以为空！");
+          return;
+        }
+        if(this.form.sex === '' || this.form.sex === null){
+          this.$message.error("性别不可以为空！");
+          return;
+        }
+        this.$axios.post('/api/user/updateUserInfo', {
+          id: this.form.id,
+          name: this.form.name,
+          password: this.form.password,
+          phone: this.form.phone,
+          sex: this.form.sex,
+        }).then(res =>{
+          if(res.data === 1){
+            Cookies.remove('token');
+            location.reload()
+            this.$message.success("更新成功，请重新登录！")
+          }else{
+            this.$message.error("更新失败！")
+          }
+        })
       }
     }
   }

@@ -18,7 +18,8 @@ const routerData = {
         for (let j = 0; j < routers.length; j++) {
           if (routers[j].meta && routers[j].meta.role.length && routers[j].meta.role.indexOf(userRole) === -1) {
             routers.splice(j, 1)
-            j = j !== 0 ? j - 1 : j
+            j = j - 1
+            continue;
           }
           if (routers[j].children && routers[j].children.length) {
             eachSelect(routers[j].children, userRole)

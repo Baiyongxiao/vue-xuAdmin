@@ -204,8 +204,8 @@
           status: this.form.status,
         }).then(res => {
           if(res.data === 1){
-            this.$message.success("添加成功！")
             this.load()
+            this.$message.success("添加成功！")
           }else{
             this.$message.error('添加未成功！')
           }
@@ -224,12 +224,12 @@
           status:status,
         }).then(res =>{
           if(res.data === 1){
+            this.load()
             this.$message.success("更新成功！")
           }else{
             this.$message.error("更新失败！")
           }
         })
-        this.load()
       },
       updatedInfo(row){
         this.dialogVisible = true
@@ -245,13 +245,13 @@
           status:this.productVo.status,
         }).then(res => {
           if(res.data === 1){
+            this.load()
             this.$message.success("更新成功！")
           }else{
             this.$message.error("更新失败！")
           }
         })
         this.dialogVisible = false
-        this.load()
       },
       jiaozheng(){
         this.classificationTwo = this.productVo.classificationVo

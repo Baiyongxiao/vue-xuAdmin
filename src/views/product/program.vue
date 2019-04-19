@@ -9,7 +9,7 @@
     </el-col>
 
     <el-table :data="program" style="width: 100%">
-      <el-table-column label="序号" type="index" min-width>方案</el-table-column>
+      <el-table-column label="序号" type="index" min-width></el-table-column>
       <el-table-column prop="id" label="产品方案id" min-width></el-table-column>
       <el-table-column prop="pay" label="投保条件" min-width></el-table-column>
       <el-table-column prop="compensate" label="补偿责任" min-width></el-table-column>
@@ -111,8 +111,8 @@
         this.$axios.get("/api/program/deleteById?id="+row.id).then(
           res => {
             if(res.data === 1){
-              this.$message.success("删除成功！")
               this.load()
+              this.$message.success("删除成功！")
             }else{
               this.$message.error('删除失败！')
             }
@@ -153,8 +153,8 @@
           compensate: this.form.compensate,
         }).then(res => {
           if(res.data === 1){
-            this.$message.success("添加成功！")
             this.load()
+            this.$message.success("添加成功！")
           }else{
             this.$message.error('添加未成功！')
           }
@@ -172,13 +172,13 @@
           compensate:this.programVo.compensate,
         }).then(res => {
           if(res.data === 1){
+            this.load()
             this.$message.success("更新成功！")
           }else{
             this.$message.error("更新失败！")
           }
         })
         this.dialogVisible = false
-        this.load()
       },
     },
     watch: {

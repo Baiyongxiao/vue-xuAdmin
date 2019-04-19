@@ -12,7 +12,18 @@ const cn = {
     adminSetting: '管理员设置',
     roleSetting: '权限设置',
     productMain: '产品管理',
+    cheInsurance: '车险',
+    caiChanInsurance: '财产险',
+    jianKangInsurance: '健康险',
+    lvYouInsurance: '旅游险',
+    otherInsurance: '其他险',
+    shaoErInsurance: '少儿险',
+    yiWaiInsurance: '意外险',
+    zhongJiInsurance: '重疾险',
+    shouInsurance: '寿险',
+    history: '历史记录',
     program: '产品方案管理',
+    vote: '投票页面',
   },
   rightMenu: {
     close: '关闭',
@@ -26,7 +37,7 @@ const cn = {
   },
   userDropdownMenu: {
     basicInfor: '基本资料',
-    changePassword: '修改密码',
+    history: '历史记录',
     logout: '退出'
   },
 

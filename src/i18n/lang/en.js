@@ -13,7 +13,18 @@ const en = {
     adminSetting: 'adminSetting',
     roleSetting: 'roleSetting',
     productMain: 'productMain',
+    cheInsurance: 'cheInsurance',
+    caiChanInsurance: 'caiChanInsurance',
+    shaoErInsurance: 'shaoErInsurance',
+    jianKangInsurance: 'jianKangInsurance',
+    otherInsurance: 'otherInsurance',
+    lvYouInsurance: 'lvYouInsurance',
+    yiWaiInsurance: 'yiWaiInsurance',
+    zhongJiInsurance: 'zhongJiInsurance',
+    shouInsurance: 'shouInsurance',
+    history: 'history',
     program: 'program',
+    vote: 'vote',
   },
   rightMenu: {
     close: 'close',
@@ -27,7 +38,7 @@ const en = {
   },
   userDropdownMenu: {
     basicInfor: 'basicInfor',
-    changePassword: 'changePassword',
+    history: 'history',
     logout: 'logout'
   },
 
