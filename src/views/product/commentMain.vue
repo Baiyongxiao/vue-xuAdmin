@@ -19,7 +19,7 @@
 
       <el-table-column fixed="right" label="操作" width="130">
         <template slot-scope="scope">
-          <el-button @click="deleteInfo(scope.row)" type="success" round>删除</el-button>
+          <el-button @click="deleteInfo(scope.row)" type="danger" round>删除</el-button>
         </template>
       </el-table-column>
     </el-table>
