@@ -25,6 +25,7 @@ const en = {
     history: 'history',
     program: 'program',
     vote: 'vote',
+    comment: 'comment',
   },
   rightMenu: {
     close: 'close',

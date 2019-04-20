@@ -7,10 +7,11 @@
         <el-table-column prop="name" label="保险名称" min-width></el-table-column>
         <el-table-column prop="content" label="内容" min-width></el-table-column>
         <el-table-column prop="createdUser" label="创建者" min-width></el-table-column>
-        <el-table-column prop="createdDate" label="创建时间" min-width></el-table-column>
+        <el-table-column prop="createdDateVo" label="创建时间" min-width></el-table-column>
         <el-table-column fixed="right" label="操作" width="130">
           <template slot-scope="scope">
             <el-button @click="showPro(scope.row)" type="text" size="small">查看</el-button>
+            <el-button @click="remark(scope.row)" type="text" size="small">评论</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -69,6 +70,14 @@
       showPro(row){
         this.$router.push({
           path: '/vote',
+          query: {
+            productId: row.id
+          }
+        })
+      },
+      remark(row){
+        this.$router.push({
+          path: '/comment',
           query: {
             productId: row.id
           }

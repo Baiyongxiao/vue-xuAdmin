@@ -24,6 +24,7 @@ const cn = {
     history: '历史记录',
     program: '产品方案管理',
     vote: '投票页面',
+    comment: '评价页面',
   },
   rightMenu: {
     close: '关闭',

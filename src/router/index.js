@@ -9,6 +9,7 @@ import HomeMain from '@/views/index/mainIndex'
 const NotFound = () => import('@/page404')
 const AdminSetting = () => import('@/views/syssetting/adminSetting')
 const ProductMain = () => import('@/views/product/productMain')
+const CommentMain = () => import('@/views/product/commentMain')
 const CheInsurance = () => import('@/views/insurance/cheInsurance')
 const CaiChanInsurance = () => import('@/views/insurance/caiChanInsurance')
 const JianKangInsurance = () => import('@/views/insurance/jianKangInsurance')
@@ -20,6 +21,7 @@ const ZhongJiInsurance = () => import('@/views/insurance/zhongJiInsurance')
 const ShouInsurance = () => import('@/views/insurance/shouInsurance')
 const History = () => import('@/views/history/history')
 const Vote = () => import('@/views/insurance/vote')
+const Comment = () => import('@/views/insurance/comment')
 const program = () => import('@/views/product/program')
 
 Vue.use(Router)
@@ -290,6 +292,38 @@ let addRouter = [
         iconCls: 'el-icon-menu', // 图标样式class
         name: routeNmae.vote,
         component: Vote,
+        children: []
+      },
+    ]
+  },
+  {
+    path: '/comment',
+    iconCls: 'el-icon-program', // 图标样式class
+    name: routeNmae.comment,
+    hidden: true,
+    component: Layout,
+    children: [
+      {
+        path: '/comment',
+        iconCls: 'el-icon-menu', // 图标样式class
+        name: routeNmae.comment,
+        component: Comment,
+        children: []
+      },
+    ]
+  },
+  {
+    path: '/commentMain',
+    iconCls: 'el-icon-program', // 图标样式class
+    name: routeNmae.comment,
+    hidden: true,
+    component: Layout,
+    children: [
+      {
+        path: '/commentMain',
+        iconCls: 'el-icon-menu', // 图标样式class
+        name: routeNmae.comment,
+        component: CommentMain,
         children: []
       },
     ]

@@ -37,13 +37,14 @@
         <el-table-column prop="statusVo" label="当前状态" min-width></el-table-column>
         <el-table-column prop="createdUser" label="创建者" min-width></el-table-column>
         <el-table-column prop="updatedUser" label="更新者" min-width></el-table-column>
-        <el-table-column prop="createdDate" label="创建时间" min-width></el-table-column>
-        <el-table-column prop="updatedDate" label="更新时间" min-width></el-table-column>
+        <el-table-column prop="createdDateVo" label="创建时间" min-width></el-table-column>
+        <el-table-column prop="updatedDateVo" label="更新时间" min-width></el-table-column>
 
-        <el-table-column fixed="right" label="操作" width="130">
+        <el-table-column fixed="right" label="操作" width="170">
           <template slot-scope="scope">
             <el-button @click="showPro(scope.row)" type="text" size="small">查看</el-button>
             <el-button @click="updatedInfo(scope.row)" type="text" size="small">编辑</el-button>
+            <el-button @click="remark(scope.row)" type="text" size="small">评论</el-button>
             <el-button @click="updatedStatus(scope.row)" type="text" size="small" v-if="scope.row.status === 2">上线</el-button>
             <el-button @click="updatedStatus(scope.row)" type="text" size="small" v-if="scope.row.status === 1">下线</el-button>
           </template>
@@ -259,6 +260,14 @@
       showPro(row){
         this.$router.push({
           path: '/program',
+          query: {
+            productId: row.id
+          }
+        })
+      },
+      remark(row){
+        this.$router.push({
+          path: '/commentMain',
           query: {
             productId: row.id
           }

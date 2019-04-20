@@ -11,6 +11,7 @@ export default {
         id: res.id,
         role: res.role,
         name: res.name,
+        account: res.account,
         permissions: res.permissions
       }
       sessionStorage.setItem('info', JSON.stringify(store.getters.info))

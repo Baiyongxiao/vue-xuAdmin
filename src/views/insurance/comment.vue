@@ -1,17 +1,26 @@
 <template>
   <section>
-    <el-table :data="program" style="width: 100%">
+    <el-col :span="24" class="toolbar" style="padding-bottom: 0px;">
+      <el-form :inline="true">
+        <el-form-item>
+          <el-input v-model="content" placeholder="请输入评论内容" clearable></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" v-on:click="addInfo()">新增评论</el-button>
+        </el-form-item>
+      </el-form>
+    </el-col>
+
+    <el-table :data="comment" style="width: 100%">
       <el-table-column label="序号" type="index" min-width></el-table-column>
-      <el-table-column prop="pay" label="投保条件" min-width></el-table-column>
-      <el-table-column prop="compensate" label="补偿责任" min-width></el-table-column>
-      <el-table-column prop="ticketCount" label="方案票数" min-width v-if="showTicket"></el-table-column>
-      <el-table-column prop="createdUser" label="创建者" min-width></el-table-column>
+      <el-table-column prop="account" label="用户账号" min-width></el-table-column>
+      <el-table-column prop="content" label="评论内容" min-width></el-table-column>
       <el-table-column prop="createdDateVo" label="创建时间" min-width></el-table-column>
 
-      <el-table-column fixed="right" label="投票" width="130">
+      <el-table-column fixed="right" label="操作" width="130">
         <template slot-scope="scope">
-          <el-button @click="voted(scope.row)" type="success" round v-if="!showTicket">投票</el-button>
-          <el-button disabled type="info" round v-if="showTicket && programVoId === scope.row.id">已投票</el-button>
+          <el-button @click="deleteInfo(scope.row)" type="success" round
+                     v-if="accountVo === scope.row.account">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -28,6 +37,7 @@
         :total="total">
       </el-pagination>
     </div>
+
   </section>
 </template>
 
@@ -36,14 +46,14 @@
     data(){
       return {
         productId: '',
-        programVoId: '',
-        showTicket: false,
+        content: '',
+        accountVo: '',
         listQuery: {
           page: 1,
           limit: 10,
           userName: ''
         },
-        program: [],
+        comment: [],
         total: null,
       }
     },
@@ -59,19 +69,13 @@
         this.productId = this.$route.query.productId
       },
       load(){
-        this.$axios.get("/api/program/judgeIfVoted?productId="+this.productId)
-          .then( res =>{
-            if(res.data.showTicket === 1){
-              this.showTicket = true
-              this.programVoId = res.data.programVoId
-            }
-          })
-        this.$axios.post("/api/program/findByProductId", {
+        this.accountVo = this.$store.getters.info.account
+        this.$axios.post("/api/comment/findByProductId", {
           productId: this.productId,
           pageNum: this.listQuery.page,
           pageSize: this.listQuery.limit
         }).then(res =>{
-          this.program = res.data.list
+          this.comment = res.data.list
           this.total = res.data.total
         })
       },
@@ -83,20 +87,30 @@
         this.listQuery.page = val;
         this.load();
       },
-      voted(row){
-        this.$axios.post("/api/history/voted",{
+      deleteInfo(row){
+        this.$axios.get("/api/comment/deleteInfo?id="+row.id)
+          .then(res =>{
+            if(res.data === 1){
+              this.load()
+              this.$message.success("删除成功！")
+            }else{
+              this.$message.error("删除失败！")
+            }
+          })
+      },
+      addInfo(){
+        this.$axios.post("/api/comment/addInfo",{
           productId: this.productId,
-          programId: row.id
-        }).then( res =>{
+          content: this.content
+        }).then(res => {
           if(res.data === 1){
             this.load()
-            this.$message.success("投票成功！")
+            this.$message.success("添加成功！")
           }else{
-            this.$message.error("投票失败，请重新投票！")
+            this.$message.error("添加失败！")
           }
         })
       }
-
     },
     watch: {
       '$route': 'getParams'

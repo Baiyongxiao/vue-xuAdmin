@@ -7,7 +7,7 @@
         <el-table-column prop="name" label="保险名称" min-width></el-table-column>
         <el-table-column prop="content" label="内容" min-width></el-table-column>
         <el-table-column prop="createdUser" label="创建者" min-width></el-table-column>
-        <el-table-column prop="createdDate" label="创建时间" min-width></el-table-column>
+        <el-table-column prop="createdDateVo" label="创建时间" min-width></el-table-column>
 
         <el-table-column fixed="right" label="操作" width="130">
           <template slot-scope="scope">

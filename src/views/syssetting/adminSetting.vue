@@ -25,8 +25,8 @@
       <el-table-column prop="sex" label="性别" min-width></el-table-column>
       <el-table-column prop="createdUser" label="创建者" min-width></el-table-column>
       <el-table-column prop="updatedUser" label="更新者" min-width></el-table-column>
-      <el-table-column prop="createdDate" label="创建时间" min-width></el-table-column>
-      <el-table-column prop="updatedDate" label="更新时间" min-width></el-table-column>
+      <el-table-column prop="createdDateVo" label="创建时间" min-width></el-table-column>
+      <el-table-column prop="updatedDateVo" label="更新时间" min-width></el-table-column>
 
       <el-table-column fixed="right" label="操作" width="100">
         <template slot-scope="scope">
