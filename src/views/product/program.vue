@@ -13,7 +13,13 @@
       <el-table-column prop="id" label="产品方案id" min-width></el-table-column>
       <el-table-column prop="pay" label="投保条件" min-width></el-table-column>
       <el-table-column prop="compensate" label="补偿责任" min-width></el-table-column>
-      <el-table-column prop="ticketCount" label="方案票数" min-width></el-table-column>
+
+      <el-table-column fixed="right" label="方案票数" width="130">
+        <template slot-scope="scope">
+          <el-button @click="selectVotedUser(scope.row)" type="success">{{scope.row.ticketCount}}</el-button>
+        </template>
+      </el-table-column>
+
       <el-table-column prop="createdUser" label="创建者" min-width></el-table-column>
       <el-table-column prop="updatedUser" label="更新者" min-width></el-table-column>
       <el-table-column prop="createdDateVo" label="创建时间" min-width></el-table-column>
@@ -180,6 +186,14 @@
         })
         this.dialogVisible = false
       },
+      selectVotedUser(row){
+        this.$router.push({
+          path: '/votedUser',
+          query: {
+            programId: row.id
+          }
+        })
+      }
     },
     watch: {
       '$route': 'getParams'

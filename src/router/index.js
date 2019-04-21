@@ -23,6 +23,7 @@ const History = () => import('@/views/history/history')
 const Vote = () => import('@/views/insurance/vote')
 const Comment = () => import('@/views/insurance/comment')
 const program = () => import('@/views/product/program')
+const VotedUser = () => import('@/views/product/votedUser')
 
 Vue.use(Router)
 let routeNmae = en.routeNmae
@@ -114,6 +115,22 @@ let addRouter = [
         iconCls: 'el-icon-menu', // 图标样式class
         name: routeNmae.program,
         component: program,
+        children: []
+      },
+    ]
+  },
+  {
+    path: '/votedUser',
+    iconCls: 'el-icon-program', // 图标样式class
+    name: routeNmae.votedUser,
+    hidden: true,
+    component: Layout,
+    children: [
+      {
+        path: '/votedUser',
+        iconCls: 'el-icon-menu', // 图标样式class
+        name: routeNmae.votedUser,
+        component: VotedUser,
         children: []
       },
     ]

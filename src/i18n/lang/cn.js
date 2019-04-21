@@ -23,6 +23,7 @@ const cn = {
     shouInsurance: '寿险',
     history: '历史记录',
     program: '产品方案管理',
+    votedUser: '投票用户',
     vote: '投票页面',
     comment: '评价页面',
   },

@@ -24,6 +24,7 @@ const en = {
     shouInsurance: 'shouInsurance',
     history: 'history',
     program: 'program',
+    votedUser: 'votedUser',
     vote: 'vote',
     comment: 'comment',
   },
