@@ -36,6 +36,7 @@
     data(){
       return {
         productId: '',
+        classification: '',
         programVoId: '',
         showTicket: false,
         listQuery: {
@@ -57,6 +58,7 @@
       getParams(){
         // 取到路由带过来的参数
         this.productId = this.$route.query.productId
+        this.classification = this.$route.query.classification
       },
       load(){
         this.$axios.get("/api/program/judgeIfVoted?productId="+this.productId)
@@ -86,6 +88,7 @@
       voted(row){
         this.$axios.post("/api/history/voted",{
           productId: this.productId,
+          classification: this.classification,
           programId: row.id
         }).then( res =>{
           if(res.data === 1){

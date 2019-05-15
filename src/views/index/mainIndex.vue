@@ -13,7 +13,7 @@
           </el-autocomplete>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" v-on:click="load()">查询</el-button>
+          <el-button type="primary" v-on:click="searchByTitle()">查询</el-button>
         </el-form-item>
       </el-form>
     </el-col>
@@ -39,7 +39,7 @@
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
         :current-page="listQuery.page"
-        :page-sizes="[10,20,30,40]"
+        :page-sizes="[10]"
         :page-size="listQuery.limit"
         layout="total, sizes, prev, pager, next, jumper"
         :total="total">
@@ -70,6 +70,15 @@ export default {
   },
   methods: {
     load(){
+      this.$axios.post("/api/product/recommendSearch",{
+        pageNum: this.listQuery.page,
+        pageSize: this.listQuery.limit
+      }).then(res =>{
+        this.product = res.data.list
+        this.total = res.data.total
+      })
+    },
+    searchByTitle(){
       this.$axios.post("/api/product/findAllProduct", {
         status: 1,
         name: this.title,
@@ -92,7 +101,8 @@ export default {
       this.$router.push({
         path: '/vote',
         query: {
-          productId: row.id
+          productId: row.id,
+          classification: row.classification
         }
       })
     },

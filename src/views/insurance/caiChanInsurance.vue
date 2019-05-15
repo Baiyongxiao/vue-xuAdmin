@@ -71,7 +71,8 @@
         this.$router.push({
           path: '/vote',
           query: {
-            productId: row.id
+            productId: row.id,
+            classification: row.classification
           }
         })
       },
