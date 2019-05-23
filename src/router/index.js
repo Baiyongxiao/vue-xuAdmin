@@ -4,6 +4,7 @@ import Router from 'vue-router'
 import Login from '@/views/login/index'
 import Layout from '@/views/layout/layout'
 import HomeMain from '@/views/index/mainIndex'
+import Welcome from '@/views/index/welcome'
 
 // 不是必须加载的组件使用懒加载
 const NotFound = () => import('@/page404')
@@ -43,15 +44,16 @@ let defaultRouter = [
   {
     path: '/index',
     iconCls: 'fa fa-dashboard', // 图标样式class
-    name: routeNmae.home,
+    name: routeNmae.welcome,
     component: Layout,
     alone: true,
+    hidden: true,
     children: [
       {
         path: '/index',
         iconCls: 'fa fa-dashboard', // 图标样式class
-        name: '主页',
-        component: HomeMain,
+        name: routeNmae.welcome,
+        component: Welcome,
         children: []
       }
     ]
@@ -67,6 +69,24 @@ let defaultRouter = [
 
 let addRouter = [
 
+  {
+    path: '/first',
+    iconCls: 'fa fa-dashboard', // 图标样式class
+    name: routeNmae.recommend,
+    component: Layout,
+    alone: true,
+    meta: {role: ['ordinary']},
+    children: [
+      {
+        path: '/first',
+        iconCls: 'fa fa-dashboard', // 图标样式class
+        name: routeNmae.recommend,
+        component: HomeMain,
+        meta: {role: ['ordinary']},
+        children: []
+      }
+    ]
+  },
   {
     path: '/adminSetting',
     iconCls: 'el-icon-setting', // 图标样式class

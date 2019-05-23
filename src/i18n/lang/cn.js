@@ -7,7 +7,8 @@
 import zhLocale from 'element-ui/lib/locale/lang/zh-CN'
 const cn = {
   routeNmae: {
-    home: '主页',
+    home: '欢迎页',
+    recommend: '推荐页',
     systemSettings: '系统设置',
     adminSetting: '管理员设置',
     roleSetting: '权限设置',

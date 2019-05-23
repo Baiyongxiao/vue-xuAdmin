@@ -9,6 +9,7 @@ import enLocale from 'element-ui/lib/locale/lang/en'
 const en = {
   routeNmae: {
     home: 'home',
+    recommend: 'recommend',
     systemSettings: 'systemSettings',
     adminSetting: 'adminSetting',
     roleSetting: 'roleSetting',
